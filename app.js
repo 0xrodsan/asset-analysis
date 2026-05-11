@@ -1,7 +1,6 @@
 const CORS_PROXY = "https://corsproxy.io/?";
 const YAHOO_BASE = "https://query1.finance.yahoo.com/v8/finance/chart/";
 const COINGECKO_URL = "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd&include_24hr_change=true";
-const FNG_URL = "https://api.alternative.me/fng/";
 const REFRESH_MS = 60_000;
 
 const TICKERS = {
@@ -111,18 +110,6 @@ function updateRow(id, price, change) {
   }
 }
 
-function updateSentimentRow(id, value, label) {
-  const row = document.querySelector(`tr[data-id="${id}"]`);
-  if (!row) return;
-  const priceCell = row.querySelector(".asset-price");
-  const changeCell = row.querySelector(".asset-change");
-  if (priceCell) priceCell.textContent = `${value} / 100`;
-  if (changeCell) {
-    changeCell.textContent = label;
-    changeCell.className = "asset-change";
-  }
-}
-
 function markRowError(id) {
   updateRow(id, "—", "unavailable");
 }
@@ -188,22 +175,8 @@ async function loadBitcoin() {
   }
 }
 
-async function loadFearGreed() {
-  try {
-    const data = await fetchJSON(FNG_URL);
-    const entry = data?.data?.[0];
-    if (!entry) throw new Error("No data");
-    const value = Number(entry.value);
-    const label = (entry.value_classification ?? "—").toUpperCase();
-    updateSentimentRow("fear-greed", Number.isNaN(value) ? "—" : String(value), label);
-  } catch (err) {
-    console.warn("Fear & Greed fetch failed:", err);
-    markRowError("fear-greed");
-  }
-}
-
 async function refreshAll() {
-  await Promise.allSettled([loadYahoo(), loadBitcoin(), loadFearGreed()]);
+  await Promise.allSettled([loadYahoo(), loadBitcoin()]);
   setLastUpdated();
 }
 

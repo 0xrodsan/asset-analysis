@@ -131,9 +131,16 @@ a:hover {
   font-variant-numeric: tabular-nums;
 }
 
+.asset-flag {
+  width: 28px;
+  font-size: 1rem;
+  text-align: center;
+  padding-right: 0;
+}
+
 .asset-name {
   color: var(--muted);
-  width: 40%;
+  width: 35%;
 }
 
 .asset-price {
