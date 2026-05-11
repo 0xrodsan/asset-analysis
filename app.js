@@ -17,22 +17,53 @@ const TICKERS = {
   "dowjones":     "^DJI",
   "russell2000":  "^RUT",
   "vix":          "^VIX",
-
-  // Global Indices
   "ibovespa":     "^BVSP",
+
+  // European Indices
   "dax":          "^GDAXI",
   "ftse100":      "^FTSE",
+  "cac40":        "^FCHI",
+  "ibex35":       "^IBEX",
+  "eurostoxx":    "^STOXX50E",
+
+  // Asian Indices
   "nikkei":       "^N225",
   "hangseng":     "^HSI",
+  "shanghai":     "000001.SS",
+  "kospi":        "^KS11",
+  "asx200":       "^AXJO",
 
-  // Fixed Income & FX
-  "us2y":         "^IRX",
-  "us10y":        "^TNX",
+  // Mundo currencies
+  "usddkk":       "DKK=X",
+  "usdnok":       "NOK=X",
+  "usdhuf":       "HUF=X",
+  "nzdusd":       "NZDUSD=X",
+  "usdhkd":       "HKD=X",
+  "usdtwd":       "TWD=X",
+  "usdils":       "ILS=X",
+  "usdphp":       "PHP=X",
+
+  // Emergentes
+  "usdars":       "ARS=X",
+  "usdaud":       "AUDUSD=X",
   "usdbrl":       "BRL=X",
+  "usdclp":       "CLP=X",
+  "usdcny":       "CNY=X",
+  "usdmxn":       "MXN=X",
+  "usdtry":       "TRY=X",
+  "usdzar":       "ZAR=X",
+  "usdinr":       "INR=X",
+  "usdkrw":       "KRW=X",
+  "usdrub":       "RUB=X",
+
+  // Cesta DX
+  "dxy":          "DX-Y.NYB",
   "usdeur":       "EURUSD=X",
   "usdjpy":       "JPY=X",
-  "dxy":          "DX-Y.NYB",
-  "ewz":          "EWZ",
+  "usdgbp":       "GBPUSD=X",
+  "usdcad":       "CAD=X",
+  "usdsek":       "SEK=X",
+  "usdchf":       "CHF=X",
 
   // Commodities
   "gold":         "GC=F",
@@ -40,6 +71,11 @@ const TICKERS = {
   "wti":          "CL=F",
   "brent":        "BZ=F",
   "copper":       "HG=F",
+
+  // Other
+  "us2y":         "^IRX",
+  "us10y":        "^TNX",
+  "ewz":          "EWZ",
 };
 
 function formatPrice(value) {

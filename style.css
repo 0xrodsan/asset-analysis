@@ -9,7 +9,7 @@
   --negative: #f87171;
   --color-border: rgba(255,255,255,0.07);
   --color-hover: rgba(255,255,255,0.03);
-  --max-width: 960px;
+  --max-width: 1280px;
   --space-1: 0.5rem;
   --space-2: 1rem;
   --space-3: 1.5rem;
@@ -98,7 +98,8 @@ a:hover {
   margin-bottom: var(--space-5);
 }
 
-.group h2 {
+.group h2,
+.dashboard-col section h2 {
   font-size: 1.1rem;
   font-weight: 500;
   text-transform: uppercase;
@@ -148,6 +149,25 @@ a:hover {
 
 .positive { color: var(--positive); }
 .negative { color: var(--negative); }
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  align-items: start;
+}
+
+.dashboard-col {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+@media (max-width: 960px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+}
 
 .site-footer {
   padding: var(--space-3) var(--space-2);
