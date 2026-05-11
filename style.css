@@ -146,6 +146,11 @@ a:hover {
   border-radius: 2px;
 }
 
+.asset-flag img[alt="Bitcoin"] {
+  width: 20px;
+  height: 20px;
+}
+
 .asset-name {
   color: var(--muted);
   width: 35%;
