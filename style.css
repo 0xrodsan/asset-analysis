@@ -7,6 +7,8 @@
   --surface-hover: #161616;
   --positive: #4ade80;
   --negative: #f87171;
+  --color-border: rgba(255,255,255,0.07);
+  --color-hover: rgba(255,255,255,0.03);
   --max-width: 960px;
   --space-1: 0.5rem;
   --space-2: 1rem;
@@ -107,81 +109,45 @@ a:hover {
   border-bottom: 1px solid var(--border);
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  gap: var(--space-2);
+.market-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 2rem;
 }
 
-.card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  padding: var(--space-3);
-  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-1);
-  min-height: 120px;
+.market-table tr {
+  border-bottom: 1px solid var(--color-border);
 }
 
-.card:hover {
-  background: var(--surface-hover);
-  border-color: #2a2a2a;
+.market-table tr:hover {
+  background: var(--color-hover);
 }
 
-.card-name {
-  font-size: 0.8rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
+.market-table td {
+  padding: 10px 8px;
+  font-size: 0.9rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.asset-name {
   color: var(--muted);
+  width: 40%;
 }
 
-.card-price {
-  font-size: 1.5rem;
+.asset-price {
   font-weight: 600;
-  letter-spacing: -0.01em;
-  font-variant-numeric: tabular-nums;
+  width: 35%;
 }
 
-.card-change {
-  font-size: 0.95rem;
-  font-variant-numeric: tabular-nums;
+.asset-change {
+  text-align: right;
+  width: 25%;
+  font-size: 0.85rem;
   color: var(--muted);
 }
 
-.card-label {
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--muted);
-  margin-top: auto;
-}
-
-.positive {
-  color: var(--positive);
-}
-
-.negative {
-  color: var(--negative);
-}
-
-.card.skeleton .card-price,
-.card.skeleton .card-change,
-.card.skeleton .card-label {
-  color: transparent;
-  background: linear-gradient(90deg, #1a1a1a 0%, #222 50%, #1a1a1a 100%);
-  background-size: 200% 100%;
-  animation: shimmer 1.4s infinite linear;
-  border-radius: 2px;
-  display: inline-block;
-  min-width: 60%;
-}
-
-@keyframes shimmer {
-  0% { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
-}
+.positive { color: var(--positive); }
+.negative { color: var(--negative); }
 
 .site-footer {
   padding: var(--space-3) var(--space-2);

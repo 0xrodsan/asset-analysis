@@ -58,44 +58,37 @@ function formatChange(pct) {
   return `${sign}${pct.toFixed(2)}%`;
 }
 
-function applyChangeClass(el, pct) {
-  el.classList.remove("positive", "negative");
-  if (pct == null || Number.isNaN(pct)) return;
-  if (pct > 0) el.classList.add("positive");
-  else if (pct < 0) el.classList.add("negative");
+function updateRow(id, price, change) {
+  const row = document.querySelector(`tr[data-id="${id}"]`);
+  if (!row) return;
+  const priceCell = row.querySelector(".asset-price");
+  const changeCell = row.querySelector(".asset-change");
+  if (priceCell) priceCell.textContent = price;
+  if (changeCell) {
+    changeCell.textContent = change;
+    const n = parseFloat(change);
+    if (Number.isNaN(n)) {
+      changeCell.className = "asset-change";
+    } else {
+      changeCell.className = "asset-change " + (n >= 0 ? "positive" : "negative");
+    }
+  }
 }
 
-function updateCard(id, { price, change, label }) {
-  const card = document.querySelector(`[data-id="${id}"]`);
-  if (!card) return;
-
-  const priceEl = card.querySelector('[data-role="price"]');
-  const changeEl = card.querySelector('[data-role="change"]');
-  const labelEl = card.querySelector('[data-role="label"]');
-
-  if (priceEl) priceEl.textContent = price == null ? "—" : formatPrice(price);
-  if (changeEl) {
-    changeEl.textContent = formatChange(change);
-    applyChangeClass(changeEl, change);
+function updateSentimentRow(id, value, label) {
+  const row = document.querySelector(`tr[data-id="${id}"]`);
+  if (!row) return;
+  const priceCell = row.querySelector(".asset-price");
+  const changeCell = row.querySelector(".asset-change");
+  if (priceCell) priceCell.textContent = `${value} / 100`;
+  if (changeCell) {
+    changeCell.textContent = label;
+    changeCell.className = "asset-change";
   }
-  if (labelEl && label !== undefined) labelEl.textContent = label ?? "—";
-
-  card.classList.remove("skeleton");
 }
 
-function markCardError(id) {
-  const card = document.querySelector(`[data-id="${id}"]`);
-  if (!card) return;
-
-  const priceEl = card.querySelector('[data-role="price"]');
-  const changeEl = card.querySelector('[data-role="change"]');
-
-  if (priceEl) priceEl.textContent = "—";
-  if (changeEl) {
-    changeEl.textContent = "unavailable";
-    changeEl.classList.remove("positive", "negative");
-  }
-  card.classList.remove("skeleton");
+function markRowError(id) {
+  updateRow(id, "—", "unavailable");
 }
 
 function setLastUpdated() {
@@ -138,10 +131,10 @@ async function loadYahoo() {
     Object.entries(TICKERS).map(async ([id, ticker]) => {
       try {
         const { price, change } = await fetchYahoo(ticker);
-        updateCard(id, { price, change });
+        updateRow(id, formatPrice(price), formatChange(change));
       } catch (err) {
         console.warn(`Yahoo fetch failed for ${id} (${ticker}):`, err);
-        markCardError(id);
+        markRowError(id);
       }
     })
   );
@@ -152,13 +145,10 @@ async function loadBitcoin() {
     const data = await fetchJSON(COINGECKO_URL);
     const btc = data?.bitcoin;
     if (!btc) throw new Error("No data");
-    updateCard("bitcoin", {
-      price: btc.usd,
-      change: btc.usd_24h_change,
-    });
+    updateRow("bitcoin", formatPrice(btc.usd), formatChange(btc.usd_24h_change));
   } catch (err) {
     console.warn("CoinGecko fetch failed:", err);
-    markCardError("bitcoin");
+    markRowError("bitcoin");
   }
 }
 
@@ -168,23 +158,11 @@ async function loadFearGreed() {
     const entry = data?.data?.[0];
     if (!entry) throw new Error("No data");
     const value = Number(entry.value);
-    const label = entry.value_classification ?? "—";
-    const card = document.querySelector('[data-id="fear-greed"]');
-    if (card) {
-      const priceEl = card.querySelector('[data-role="price"]');
-      const changeEl = card.querySelector('[data-role="change"]');
-      const labelEl = card.querySelector('[data-role="label"]');
-      if (priceEl) priceEl.textContent = Number.isNaN(value) ? "—" : String(value);
-      if (changeEl) {
-        changeEl.textContent = "/ 100";
-        changeEl.classList.remove("positive", "negative");
-      }
-      if (labelEl) labelEl.textContent = label;
-      card.classList.remove("skeleton");
-    }
+    const label = (entry.value_classification ?? "—").toUpperCase();
+    updateSentimentRow("fear-greed", Number.isNaN(value) ? "—" : String(value), label);
   } catch (err) {
     console.warn("Fear & Greed fetch failed:", err);
-    markCardError("fear-greed");
+    markRowError("fear-greed");
   }
 }
 
