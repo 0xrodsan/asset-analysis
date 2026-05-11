@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Asset Analysis — RodSan</title>
+  <meta name="description" content="Real-time market intelligence dashboard.">
+  <link rel="stylesheet" href="style.css">
+  <script src="config.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="site-nav" aria-label="Primary">
+      <a href="https://0xrodsan.github.io">RodSan</a>
+      <a href="https://0xrodsan.github.io/blackbox">Blackbox</a>
+      <a href="https://0xrodsan.github.io/contato.html">Contact</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1>Asset Analysis</h1>
+      <p>Real-time market intelligence dashboard.</p>
+      <p class="updated">Last updated: <time id="last-updated">—</time></p>
+    </section>
+
+    <section class="group" aria-labelledby="futures-heading">
+      <h2 id="futures-heading">Futures</h2>
+      <div class="grid">
+        <article class="card skeleton" data-id="ES=F">
+          <h3 class="card-name">S&amp;P 500 Fut</h3>
+          <p class="card-price" data-role="price">—</p>
+          <p class="card-change" data-role="change">—</p>
+        </article>
+        <article class="card skeleton" data-id="NQ=F">
+          <h3 class="card-name">Nasdaq Fut</h3>
+          <p class="card-price" data-role="price">—</p>
+          <p class="card-change" data-role="change">—</p>
+        </article>
+        <article class="card skeleton" data-id="YM=F">
+          <h3 class="card-name">Dow Jones Fut</h3>
+          <p class="card-price" data-role="price">—</p>
+          <p class="card-change" data-role="change">—</p>
+        </article>
+        <article class="card skeleton" data-id="bitcoin">
+          <h3 class="card-name">Bitcoin</h3>
+          <p class="card-price" data-role="price">—</p>
+          <p class="card-change" data-role="change">—</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="group" aria-labelledby="fi-fx-heading">
+      <h2 id="fi-fx-heading">Fixed Income &amp; FX</h2>
+      <div class="grid">
+        <article class="card skeleton" data-id="^IRX">
+          <h3 class="card-name">U.S. 2Y</h3>
+          <p class="card-price" data-role="price">—</p>
+          <p class="card-change" data-role="change">—</p>
+        </article>
+        <article class="card skeleton" data-id="^TNX">
+          <h3 class="card-name">U.S. 10Y</h3>
+          <p class="card-price" data-role="price">—</p>
+          <p class="card-change" data-role="change">—</p>
+        </article>
+        <article class="card skeleton" data-id="BRL=X">
+          <h3 class="card-name">USD/BRL</h3>
+          <p class="card-price" data-role="price">—</p>
+          <p class="card-change" data-role="change">—</p>
+        </article>
+        <article class="card skeleton" data-id="EWZ">
+          <h3 class="card-name">EWZ</h3>
+          <p class="card-price" data-role="price">—</p>
+          <p class="card-change" data-role="change">—</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="group" aria-labelledby="sentiment-heading">
+      <h2 id="sentiment-heading">Sentiment</h2>
+      <div class="grid">
+        <article class="card skeleton" data-id="fng">
+          <h3 class="card-name">Fear &amp; Greed Index</h3>
+          <p class="card-price" data-role="price">—</p>
+          <p class="card-change" data-role="change">—</p>
+          <p class="card-label" data-role="label">—</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>RodSan &copy; 2025 &middot; <a href="https://0xrodsan.github.io">0xrodsan.github.io</a></p>
+  </footer>
+</body>
+</html>
