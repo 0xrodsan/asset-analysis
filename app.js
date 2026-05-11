@@ -4,7 +4,43 @@ const COINGECKO_URL = "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin
 const FNG_URL = "https://api.alternative.me/fng/";
 const REFRESH_MS = 60_000;
 
-const YAHOO_TICKERS = ["ES=F", "NQ=F", "YM=F", "^IRX", "^TNX", "BRL=X", "EWZ"];
+const TICKERS = {
+  // Futures
+  "sp500-fut":    "ES=F",
+  "nasdaq-fut":   "NQ=F",
+  "dowjones-fut": "YM=F",
+  "russell-fut":  "RTY=F",
+
+  // U.S. Indices
+  "sp500":        "^GSPC",
+  "nasdaq":       "^IXIC",
+  "dowjones":     "^DJI",
+  "russell2000":  "^RUT",
+  "vix":          "^VIX",
+
+  // Global Indices
+  "ibovespa":     "^BVSP",
+  "dax":          "^GDAXI",
+  "ftse100":      "^FTSE",
+  "nikkei":       "^N225",
+  "hangseng":     "^HSI",
+
+  // Fixed Income & FX
+  "us2y":         "^IRX",
+  "us10y":        "^TNX",
+  "usdbrl":       "BRL=X",
+  "usdeur":       "EURUSD=X",
+  "usdjpy":       "JPY=X",
+  "dxy":          "DX-Y.NYB",
+  "ewz":          "EWZ",
+
+  // Commodities
+  "gold":         "GC=F",
+  "silver":       "SI=F",
+  "wti":          "CL=F",
+  "brent":        "BZ=F",
+  "copper":       "HG=F",
+};
 
 function formatPrice(value) {
   if (value == null || Number.isNaN(value)) return "—";
@@ -99,13 +135,13 @@ async function fetchYahoo(ticker) {
 
 async function loadYahoo() {
   await Promise.all(
-    YAHOO_TICKERS.map(async (ticker) => {
+    Object.entries(TICKERS).map(async ([id, ticker]) => {
       try {
         const { price, change } = await fetchYahoo(ticker);
-        updateCard(ticker, { price, change });
+        updateCard(id, { price, change });
       } catch (err) {
-        console.warn(`Yahoo fetch failed for ${ticker}:`, err);
-        markCardError(ticker);
+        console.warn(`Yahoo fetch failed for ${id} (${ticker}):`, err);
+        markCardError(id);
       }
     })
   );
@@ -133,7 +169,7 @@ async function loadFearGreed() {
     if (!entry) throw new Error("No data");
     const value = Number(entry.value);
     const label = entry.value_classification ?? "—";
-    const card = document.querySelector('[data-id="fng"]');
+    const card = document.querySelector('[data-id="fear-greed"]');
     if (card) {
       const priceEl = card.querySelector('[data-role="price"]');
       const changeEl = card.querySelector('[data-role="change"]');
@@ -148,7 +184,7 @@ async function loadFearGreed() {
     }
   } catch (err) {
     console.warn("Fear & Greed fetch failed:", err);
-    markCardError("fng");
+    markCardError("fear-greed");
   }
 }
 
