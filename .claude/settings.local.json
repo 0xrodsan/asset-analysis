@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git -C \"C:\\\\Users\\\\Rod\\\\Documents\\\\Stuff\\\\Personal_Site\\\\0xrodsan-asset-analysis\" status)",
+      "Bash(git -C \"C:\\\\Users\\\\Rod\\\\Documents\\\\Stuff\\\\Personal_Site\\\\0xrodsan-asset-analysis\" remote -v)",
+      "Bash(git *)"
+    ]
+  }
+}
