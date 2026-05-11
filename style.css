@@ -9,6 +9,7 @@
   --negative: #f87171;
   --color-border: rgba(255,255,255,0.07);
   --color-hover: rgba(255,255,255,0.03);
+  --color-surface: #111111;
   --max-width: 1280px;
   --space-1: 0.5rem;
   --space-2: 1rem;
@@ -153,8 +154,8 @@ a:hover {
 .dashboard-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-  align-items: start;
+  gap: 0;
+  align-items: stretch;
 }
 
 .dashboard-col {
@@ -163,9 +164,34 @@ a:hover {
   gap: 2rem;
 }
 
+.dashboard-col section {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  padding: 1rem 1.2rem;
+}
+
+.dashboard-col section:last-child {
+  flex: 1;
+}
+
+.dashboard-col:not(:last-child) {
+  border-right: 1px solid var(--color-border);
+  padding-right: 2rem;
+}
+
+.dashboard-col:not(:first-child) {
+  padding-left: 2rem;
+}
+
 @media (max-width: 960px) {
   .dashboard-grid {
     grid-template-columns: 1fr;
+  }
+
+  .dashboard-col:not(:last-child) {
+    border-right: none;
+    padding-right: 0;
   }
 }
 
