@@ -1,4 +1,4 @@
-# Panorama Dólar
+# Panorama Dollar
 
 Real-time market intelligence dashboard. Part of the [RodSan](https://0xrodsan.github.io) ecosystem, accessible via [Blackbox](https://0xrodsan.github.io/blackbox).
 
@@ -12,4 +12,4 @@ Real-time market intelligence dashboard. Part of the [RodSan](https://0xrodsan.g
 - Alternative.me Fear & Greed API
 
 ## Live
-https://0xrodsan.github.io/panorama-dolar/
+https://0xrodsan.github.io/panorama-dollar/
