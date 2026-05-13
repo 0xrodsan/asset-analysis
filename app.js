@@ -17,6 +17,8 @@ const TICKERS = {
   "russell2000":  "^RUT",
   "vix":          "^VIX",
   "ibovespa":     "^BVSP",
+  "sptsx":        "^GSPTSE",
+  "bmvipc":       "^MXX",
 
   // European Indices
   "dax":          "^GDAXI",
@@ -24,6 +26,10 @@ const TICKERS = {
   "cac40":        "^FCHI",
   "ibex35":       "^IBEX",
   "eurostoxx":    "^STOXX50E",
+  "ftsemib":      "FTSEMIB.MI",
+  "moex":         "IMOEX.ME",
+  "omxs30":       "^OMX",
+  "smi":          "^SSMI",
 
   // Asian Indices
   "nikkei":       "^N225",
@@ -31,6 +37,10 @@ const TICKERS = {
   "shanghai":     "000001.SS",
   "kospi":        "^KS11",
   "asx200":       "^AXJO",
+  "tadawul":      "^TASI.SR",
+  "szse":         "399001.SZ",
+  "sensex":       "^BSESN",
+  "bist100":      "XU100.IS",
 
   // Mundo currencies
   "usddkk":       "DKK=X",
@@ -41,6 +51,16 @@ const TICKERS = {
   "usdtwd":       "TWD=X",
   "usdils":       "ILS=X",
   "usdphp":       "PHP=X",
+  "usddop":       "DOP=X",
+  "usdjmd":       "JMD=X",
+  "usdnio":       "NIO=X",
+  "usdpen":       "PEN=X",
+  "usdpyg":       "PYG=X",
+  "usduyu":       "UYU=X",
+  "usdcrc":       "CRC=X",
+  "usdczk":       "CZK=X",
+  "usdegp":       "EGP=X",
+  "usdngn":       "NGN=X",
 
   // Emergentes
   "usdars":       "ARS=X",
@@ -54,6 +74,9 @@ const TICKERS = {
   "usdinr":       "INR=X",
   "usdkrw":       "KRW=X",
   "usdrub":       "RUB=X",
+  "usdcop":       "COP=X",
+  "usdidr":       "IDR=X",
+  "usdsar":       "SAR=X",
 
   // Cesta DX
   "dxy":          "DX-Y.NYB",
@@ -70,11 +93,15 @@ const TICKERS = {
   "wti":          "CL=F",
   "brent":        "BZ=F",
   "copper":       "HG=F",
+  "ironore":      "SCOA.L",
 
   // Other
   "us2y":         "^IRX",
   "us10y":        "^TNX",
   "ewz":          "EWZ",
+  "indicefut":    "WIN=F",
+  "germany10y":   "DE10YT=RR",
+  "cdsbr5":       "BVS.L",
 };
 
 function formatPrice(value) {
