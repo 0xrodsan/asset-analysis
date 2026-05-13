@@ -93,7 +93,7 @@ const TICKERS = {
   "wti":          "CL=F",
   "brent":        "BZ=F",
   "copper":       "HG=F",
-  "ironore":      "FEF=F",
+  "ironore":      "DCIOc1",
 
   // Other
   "us2y":         "^IRX",
