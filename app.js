@@ -93,15 +93,11 @@ const TICKERS = {
   "wti":          "CL=F",
   "brent":        "BZ=F",
   "copper":       "HG=F",
-  "ironore":      "DCIOc1",
 
   // Other
   "us2y":         "^IRX",
   "us10y":        "^TNX",
   "ewz":          "EWZ",
-  "indicefut":    "WIN=F",
-  "germany10y":   "DE10YT=RR",
-  "cdsbr5":       "BVS.L",
 };
 
 function formatPrice(value) {
