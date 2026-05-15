@@ -1,6 +1,6 @@
 const CORS_PROXY = "https://corsproxy.io/?";
 const YAHOO_BASE = "https://query1.finance.yahoo.com/v8/finance/chart/";
-const COINGECKO_URL = "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd&include_24hr_change=true";
+const COINGECKO_URL = "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana,chainlink,matic-network,binancecoin,cardano,ripple&vs_currencies=usd&include_24hr_change=true";
 const REFRESH_MS = 60_000;
 
 const TICKERS = {
@@ -186,20 +186,34 @@ async function loadYahoo() {
   );
 }
 
-async function loadBitcoin() {
+const COINGECKO_ID_MAP = {
+  "bitcoin":      "bitcoin",
+  "ethereum":     "ethereum",
+  "solana":       "solana",
+  "chainlink":    "chainlink",
+  "matic-network":"polygon",
+  "binancecoin":  "bnb",
+  "cardano":      "cardano",
+  "ripple":       "xrp",
+};
+
+async function loadCoingecko() {
   try {
     const data = await fetchJSON(COINGECKO_URL);
-    const btc = data?.bitcoin;
-    if (!btc) throw new Error("No data");
-    updateRow("bitcoin", formatPrice(btc.usd), formatChange(btc.usd_24h_change));
+    if (!data) throw new Error("No data");
+    for (const [coinId, rowId] of Object.entries(COINGECKO_ID_MAP)) {
+      const coin = data[coinId];
+      if (!coin) { markRowError(rowId); continue; }
+      updateRow(rowId, formatPrice(coin.usd), formatChange(coin.usd_24h_change));
+    }
   } catch (err) {
     console.warn("CoinGecko fetch failed:", err);
-    markRowError("bitcoin");
+    for (const rowId of Object.values(COINGECKO_ID_MAP)) markRowError(rowId);
   }
 }
 
 async function refreshAll() {
-  await Promise.allSettled([loadYahoo(), loadBitcoin()]);
+  await Promise.allSettled([loadYahoo(), loadCoingecko()]);
   setLastUpdated();
 }
 
