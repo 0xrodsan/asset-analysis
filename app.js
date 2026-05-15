@@ -1,6 +1,6 @@
 const CORS_PROXY = "https://corsproxy.io/?";
 const YAHOO_BASE = "https://query1.finance.yahoo.com/v8/finance/chart/";
-const COINGECKO_URL = "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana,chainlink,matic-network,binancecoin,cardano,ripple&vs_currencies=usd&include_24hr_change=true";
+const COINGECKO_URL = "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana,chainlink,polygon-ecosystem-token,binancecoin,cardano,ripple&vs_currencies=usd&include_24hr_change=true";
 const REFRESH_MS = 60_000;
 
 const TICKERS = {
@@ -191,7 +191,7 @@ const COINGECKO_ID_MAP = {
   "ethereum":     "ethereum",
   "solana":       "solana",
   "chainlink":    "chainlink",
-  "matic-network":"polygon",
+  "polygon-ecosystem-token":"polygon",
   "binancecoin":  "bnb",
   "cardano":      "cardano",
   "ripple":       "xrp",
